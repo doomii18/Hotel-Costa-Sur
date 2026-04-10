@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Costa Sur | Reservas en San Carlos</title>
+
+    <!-- FAVICON con imagen propia -->
+  <link rel="icon" type="image/png" href="IMG/img.jpeg">
+  <link rel="shortcut icon" href="IMG/img.jpeg">
+  
+  
+  <link rel="stylesheet" href="CSS/style.css">
+
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <h1 class="header__title">✨ Hotel Costa Sur</h1>
+  <nav class="header__nav">
+    <a href="#descripcion">Hotel</a>
+    <a href="#habitaciones">Habitaciones</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#resenas">Reseñas</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <img src="IMG/Hotel Costa Sur.jpeg" alt="Hotel Costa Sur" class="hero__img">
+  <div class="hero__content">
+    <h2>Tu escape tropical en San Carlos</h2>
+    <p>🌊 Habitaciones cómodas · Vista al río · Atención 24/7</p>
+    <button class="btn btn--primary" id="heroReservarBtn">Reservar ahora →</button>
+  </div>
+</section>
+
+<!-- DESCRIPCIÓN -->
+<section id="descripcion" class="section">
+  <h2 class="section__title">🏨 Sobre el Hotel</h2>
+  <p style="margin-bottom: 1rem; font-size: 1.1rem;">
+    El <strong>Hotel Costa Sur</strong>, ubicado frente a la sucursal Banpro en San Carlos, Río San Juan,
+    fue fundado por Thelma Chamorro e inaugurado el 23 de marzo de 1999. Con más de 27 años
+    de experiencia, nos hemos consolidado como una opción confiable de alojamiento en la zona.
+  </p>
+  <p><strong>📍 Dirección:</strong> Frente a Banpro, San Carlos, Río San Juan, Nicaragua</p>
+  
+  <div class="map">
+    <iframe
+      src="https://maps.google.com/maps?width=550&amp;height=564&amp;hl=en&amp;q=Hotel%20Costa%20Sur%20San%20Carlos+(Hotel%20Costa%20Sur)&amp;t=p&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
+    </iframe>
+  </div>
+</section>
+
+<!-- HABITACIONES (con disponibilidad, precios y características) -->
+<section id="habitaciones" class="section section--gray">
+  <h2 class="section__title">🛏️ Nuestras Habitaciones</h2>
+  <p style="margin-bottom: 1.5rem;">Selecciona tu favorita y reserva al mejor precio | Disponibilidad en tiempo real</p>
+  
+  <!-- Filtros por categoría -->
+  <div class="filters">
+    <button class="filter-btn filter-btn--active" data-filter="all">Todas</button>
+    <button class="filter-btn" data-filter="economicas">Económicas (C$400 - C$450)</button>
+    <button class="filter-btn" data-filter="estandar">Estándar (C$500 - C$900)</button>
+    <button class="filter-btn" data-filter="aire"> Con Aire Acondicionado (C$1100)</button>
+  </div>
+  
+  <div class="rooms-grid" id="roomsContainer">
+    <!-- Las habitaciones se cargarán dinámicamente con JS -->
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios" class="section">
+  <h2 class="section__title">🌟 Servicios </h2>
+  <div class="services">
+    <div class="service-card"><h3>🏆 Alojamiento de calidad</h3><p>Habitaciones cómodas y limpias para tu descanso.</p></div>
+    <div class="service-card"><h3>⏰ Atención 24/7</h3><p>Siempre disponibles para ti, día y noche.</p></div>
+    <div class="service-card"><h3>🤝 Servicio amable</h3><p>Trato cálido y personalizado.</p></div>
+    <div class="service-card"><h3>🔒 Ambiente seguro</h3><p>Máxima seguridad durante tu estadía.</p></div>
+  </div>
+</section>
+
+<!-- RESEÑAS -->
+<section id="resenas" class="section section--gray">
+  <h2 class="section__title">⭐ Reseñas de Clientes</h2>
+  <div class="reviews">
+    <div class="review"><p>"Excelente atención, muy limpio y cómodo. Volveré sin dudas."</p><span>⭐⭐⭐⭐⭐</span></div>
+    <div class="review"><p>"Buena ubicación y personal súper amable, precios justos."</p><span>⭐⭐⭐⭐</span></div>
+    <div class="review"><p>"Precio accesible, habitaciones amplias y vista increíble."</p><span>⭐⭐⭐⭐⭐</span></div>
+  </div>
+</section>
+
+<!-- REDES SOCIALES -->
+<section id="contacto" class="section">
+  <h2 class="section__title">📱 Contáctanos</h2>
+  <div class="social">
+    <a href="https://www.facebook.com/hotelcostasur/about" class="social__card social__card--facebook">
+      <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" alt="Facebook" class="social__icon">
+      <span>Facebook</span>
+    </a>
+    <a href="https://www.tiktok.com/@hotelcostasur1" class="social__card social__card--tiktok">
+      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046126.png" alt="TikTok" class="social__icon">
+      <span>TikTok</span>
+    </a>
+    <a href="https://wa.me/50588536728" class="social__card social__card--whatsapp">
+      <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WhatsApp" class="social__icon">
+      <span>WhatsApp</span>
+    </a>
+  </div>
+</section>
+
+<!-- POPUP MODERNIZADO con formulario de reserva -->
+<div class="popup" id="reservaPopup">
+  <div class="popup__content">
+    <div class="close-icon" id="closePopupBtn">&times;</div>
+    <h3 class="popup__title">🏖️ ¡Oferta Especial!</h3>
+    <p class="popup__subtitle">Completa tus datos y asegura tu habitación con 15% de descuento</p>
+    
+    <form class="popup__form" id="popupForm">
+      <input type="text" id="popupNombre" placeholder="Nombre completo" required>
+      <input type="email" id="popupEmail" placeholder="Correo electrónico" required>
+      <input type="tel" id="popupTelefono" placeholder="Teléfono / WhatsApp" required>
+      <input type="text" id="popupCiudad" placeholder="Ciudad de origen" required>
+      
+      <div class="popup__buttons">
+        <button type="button" class="popup__btn popup__btn--cerrar" id="cancelPopupBtn">Cancelar</button>
+        <button type="submit" class="popup__btn popup__btn--reservar">Reservar ahora ✨</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>© 2026 Hotel Costa Sur | San Carlos, Río San Juan</p>
+  <a href="#">Privacidad</a> | <a href="#">Términos y condiciones</a>
+</footer>
+
+<script src="JS/script.js"></script>
+</body>
+</html>

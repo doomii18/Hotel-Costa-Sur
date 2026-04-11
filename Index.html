@@ -1,45 +1,38 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hotel Costa Sur | Reservas en San Carlos</title>
-
-    <!-- FAVICON con imagen propia -->
-  <link rel="icon" type="image/png" href="IMG/img.jpeg">
-  <link rel="shortcut icon" href="IMG/img.jpeg">
-  
-  
-  <link rel="stylesheet" href="CSS/style.css">
-
-</head>
-<body>
-
 <!-- HEADER -->
 <header class="header">
-  <h1 class="header__title">✨ Hotel Costa Sur</h1>
+  <div class="header__logo">
+    <h1 class="header__title">Hotel Costa Sur</h1>
+    <title>Hotel Costa Sur - San Carlos</title>
+  </div>
   <nav class="header__nav">
     <a href="#descripcion">Hotel</a>
     <a href="#habitaciones">Habitaciones</a>
     <a href="#servicios">Servicios</a>
     <a href="#resenas">Reseñas</a>
     <a href="#contacto">Contacto</a>
+    <a href="#" id="misReservasLink"> Mis Reservas</a>
   </nav>
+  <div class="header__user" id="userInfo">
+    <span id="userNameDisplay"></span>
+    <button id="logoutBtn" class="logout-btn" style="display: none;">Cerrar Sesión</button>
+  </div>
 </header>
+
+  <link rel="stylesheet" href="CSS/style.css">
 
 <!-- HERO -->
 <section class="hero">
   <img src="IMG/Hotel Costa Sur.jpeg" alt="Hotel Costa Sur" class="hero__img">
   <div class="hero__content">
-    <h2>Tu escape tropical en San Carlos</h2>
-    <p>🌊 Habitaciones cómodas · Vista al río · Atención 24/7</p>
+    <h2>Descubre un rincón único en San Carlos</h2>
+    <p> Habitaciones cómodas · Atención 24/7</p>
     <button class="btn btn--primary" id="heroReservarBtn">Reservar ahora →</button>
   </div>
 </section>
 
 <!-- DESCRIPCIÓN -->
 <section id="descripcion" class="section">
-  <h2 class="section__title">🏨 Sobre el Hotel</h2>
+  <h2 class="section__title">Sobre el Hotel</h2>
   <p style="margin-bottom: 1rem; font-size: 1.1rem;">
     El <strong>Hotel Costa Sur</strong>, ubicado frente a la sucursal Banpro en San Carlos, Río San Juan,
     fue fundado por Thelma Chamorro e inaugurado el 23 de marzo de 1999. Con más de 27 años
@@ -54,27 +47,24 @@
   </div>
 </section>
 
-<!-- HABITACIONES (con disponibilidad, precios y características) -->
+<!-- HABITACIONES -->
 <section id="habitaciones" class="section section--gray">
-  <h2 class="section__title">🛏️ Nuestras Habitaciones</h2>
+  <h2 class="section__title"> Nuestras Habitaciones</h2>
   <p style="margin-bottom: 1.5rem;">Selecciona tu favorita y reserva al mejor precio | Disponibilidad en tiempo real</p>
   
-  <!-- Filtros por categoría -->
   <div class="filters">
     <button class="filter-btn filter-btn--active" data-filter="all">Todas</button>
-    <button class="filter-btn" data-filter="economicas">Económicas (C$400 - C$450)</button>
-    <button class="filter-btn" data-filter="estandar">Estándar (C$500 - C$900)</button>
-    <button class="filter-btn" data-filter="aire"> Con Aire Acondicionado (C$1100)</button>
+    <button class="filter-btn" data-filter="estandar">Económicas (C$400 - C$500)</button>
+    <button class="filter-btn" data-filter="familiares">Familiares (C$550 - C$900)</button>
+    <button class="filter-btn" data-filter="aire">Con Aire Acondicionado (C$1100)</button>
   </div>
   
-  <div class="rooms-grid" id="roomsContainer">
-    <!-- Las habitaciones se cargarán dinámicamente con JS -->
-  </div>
+  <div class="rooms-grid" id="roomsContainer"></div>
 </section>
 
 <!-- SERVICIOS -->
 <section id="servicios" class="section">
-  <h2 class="section__title">🌟 Servicios </h2>
+  <h2 class="section__title">🌟 Servicios</h2>
   <div class="services">
     <div class="service-card"><h3>🏆 Alojamiento de calidad</h3><p>Habitaciones cómodas y limpias para tu descanso.</p></div>
     <div class="service-card"><h3>⏰ Atención 24/7</h3><p>Siempre disponibles para ti, día y noche.</p></div>
@@ -112,24 +102,171 @@
   </div>
 </section>
 
-<!-- POPUP MODERNIZADO con formulario de reserva -->
-<div class="popup" id="reservaPopup">
-  <div class="popup__content">
-    <div class="close-icon" id="closePopupBtn">&times;</div>
-    <h3 class="popup__title">🏖️ ¡Oferta Especial!</h3>
-    <p class="popup__subtitle">Completa tus datos y asegura tu habitación con 15% de descuento</p>
+<!-- POPUP DE REGISTRO (con todos los campos) -->
+<div class="popup" id="registroPopup">
+  <div class="popup__content" style="max-width: 500px; max-height: 90vh; overflow-y: auto;">
+    <div class="close-icon" id="closeRegistroPopupBtn">&times;</div>
+    <h3 class="popup__title"> Crear Cuenta</h3>
+    <p class="popup__subtitle">Completa tus datos para registrarte</p>
     
-    <form class="popup__form" id="popupForm">
-      <input type="text" id="popupNombre" placeholder="Nombre completo" required>
-      <input type="email" id="popupEmail" placeholder="Correo electrónico" required>
-      <input type="tel" id="popupTelefono" placeholder="Teléfono / WhatsApp" required>
-      <input type="text" id="popupCiudad" placeholder="Ciudad de origen" required>
+    <form class="popup__form" id="registroForm">
+      <input type="text" id="regNombre" placeholder="Usuario " required>
+      <input type="email" id="regEmail" placeholder="Correo electrónico " required>
+      <input type="password" id="regPassword" placeholder="Contraseña " required>
+
       
       <div class="popup__buttons">
-        <button type="button" class="popup__btn popup__btn--cerrar" id="cancelPopupBtn">Cancelar</button>
-        <button type="submit" class="popup__btn popup__btn--reservar">Reservar ahora ✨</button>
+        <button type="button" class="popup__btn popup__btn--cerrar" id="cancelRegistroBtn">Cancelar</button>
+        <button type="submit" class="popup__btn popup__btn--reservar">Registrarse →</button>
       </div>
     </form>
+    <p style="margin-top: 1rem; font-size: 0.8rem;">¿Ya tienes cuenta? <a href="#" id="irLoginLink">Iniciar Sesión</a></p>
+  </div>
+</div>
+
+<!-- POPUP DE LOGIN -->
+<div class="popup" id="loginPopup">
+  <div class="popup__content">
+    <div class="close-icon" id="closeLoginPopupBtn">&times;</div>
+    <h3 class="popup__title"> Iniciar Sesión</h3>
+    <p class="popup__subtitle">Ingresa tus credenciales</p>
+    
+    <form class="popup__form" id="loginForm">
+      <!-- CAMBIADO: de email a usuario -->
+      <input type="text" id="loginUsuario" placeholder="Nombre de usuario" required>
+      <input type="password" id="loginPassword" placeholder="Contraseña" required>
+      
+      <div class="popup__buttons">
+        <button type="button" class="popup__btn popup__btn--cerrar" id="cancelLoginBtn">Cancelar</button>
+        <button type="submit" class="popup__btn popup__btn--reservar">Iniciar Sesión →</button>
+      </div>
+    </form>
+    <p style="margin-top: 1rem; font-size: 0.8rem;">¿No tienes cuenta? <a href="#" id="irRegistroLink">Regístrate aquí</a></p>
+  </div>
+</div>
+
+<!-- POPUP DE RESERVA COMPLETO -->
+<div class="popup" id="reservaPopup">
+  <div class="popup__content" style="max-width: 600px; max-height: 90vh; overflow-y: auto;">
+    <div class="close-icon" id="closePopupBtn">&times;</div>
+    <h3 class="popup__title">Reservar Habitación</h3>
+    <p class="popup__subtitle" id="reservaHabitacionInfo"></p>
+    
+    <form class="popup__form" id="popupForm">
+      
+      <!-- ===== DATOS PERSONALES DEL HUÉSPED ===== -->
+      <div class="form-group">
+        <label class="form-label">Número de Cédula *</label>
+        <input type="text" id="cedula" placeholder="Cédula de Identidad" required>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Nombres *</label>
+          <input type="text" id="nombres" placeholder="Ej: María José" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Apellidos *</label>
+          <input type="text" id="apellidos" placeholder="Ej: Pérez González" required>
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Sexo *</label>
+          <select id="sexo" required>
+            <option value="">Seleccione</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Femenino">Femenino</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Fecha de Nacimiento *</label>
+          <input type="date" id="fechaNacimiento" required>
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Nacionalidad *</label>
+          <input type="text" id="nacionalidad" placeholder="Ej: Nicaragüense" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Lugar de Procedencia *</label>
+          <input type="text" id="procedencia" placeholder="Ej: Managua" required>
+        </div>
+      </div>
+      
+      <!-- ===== DATOS DE LA ESTADÍA ===== -->
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Fecha de Entrada *</label>
+          <input type="date" id="fechaIngreso" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Fecha de Salida *</label>
+          <input type="date" id="fechaSalida" required>
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Días de Estancia</label>
+          <input type="number" id="diasEstancia" readonly style="background: #f0f0f0;">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Número de Huéspedes *</label>
+          <input type="number" id="numHuespedes" min="1" max="10" required>
+        </div>
+      </div>
+      
+      <!-- ===== PAGO Y TOTAL ===== -->
+      <div class="form-group">
+        <label class="form-label">Total a Pagar (C$)</label>
+        <input type="text" id="totalPago" readonly style="background: #f0f0f0; font-weight: bold; color: var(--naranja-brillante);">
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label">Tipo de Pago *</label>
+        <select id="metodoPago" required>
+          <option value="">Seleccione método de pago</option>
+          <option value="presencial">Pago presencial en el hotel</option>
+        </select>
+      </div>      
+     
+      <div class="popup__buttons">
+        <button type="button" class="popup__btn popup__btn--cerrar" id="cancelPopupBtn">Cancelar</button>
+        <button type="submit" class="popup__btn popup__btn--reservar">Confirmar Reserva ✨</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- POPUP DE DETALLE DE RESERVA -->
+<div class="popup" id="detalleReservaPopup">
+  <div class="popup__content" style="max-width: 500px;">
+    <div class="close-icon" id="closeDetallePopupBtn">&times;</div>
+    <h3 class="popup__title">Detalle de Reserva</h3>
+    <div id="detalleReservaContent"></div>
+    <button class="popup__btn popup__btn--cerrar" id="cerrarDetalleBtn" style="margin-top: 1rem;">Cerrar</button>
+  </div>
+</div>
+
+<!-- PANEL DE MIS RESERVAS -->
+<div class="popup" id="misReservasPopup">
+  <div class="popup__content" style="max-width: 90%; width: 900px; max-height: 80vh; overflow-y: auto;">
+    <div class="close-icon" id="closeMisReservasBtn">&times;</div>
+    <h3 class="popup__title"> Mis Reservas</h3>
+    <div id="misReservasContent"></div>
+  </div>
+</div>
+
+<!-- PANEL DE ADMIN (doble clic en el título) -->
+<div class="popup" id="adminPopup">
+  <div class="popup__content" style="max-width: 95%; width: 1200px; max-height: 85vh; overflow-y: auto;">
+    <div class="close-icon" id="closeAdminBtn">&times;</div>
+    <h3 class="popup__title"> Panel de Administrador</h3>
+    <div id="adminContent"></div>
   </div>
 </div>
 
@@ -140,5 +277,3 @@
 </footer>
 
 <script src="JS/script.js"></script>
-</body>
-</html>

@@ -22,10 +22,9 @@
   --transition: all 0.25s ease;
 }
 
-/* ========== CORRECCIÓN: scroll vertical FUNCIONA con touchpad ========== */
 html {
-  overflow-x: hidden;            /* Sin scroll horizontal */
-  overscroll-behavior: none;    /* Elimina el rebote (bounce) al llegar al final, pero NO bloquea el scroll */
+  overflow-x: hidden;
+  overscroll-behavior: none;
 }
 
 body {
@@ -33,18 +32,15 @@ body {
   background: var(--blanco-suave);
   color: var(--texto-oscuro);
   line-height: 1.5;
-  overflow-x: hidden;           /* Sin scroll horizontal */
-  overflow-y: auto;             /* Scroll vertical NORMAL (sí se puede mover con mouse/touchpad) */
-  -webkit-overflow-scrolling: touch; /* Scroll suave en iOS (opcional) */
-  /* NOTA: No se usa touch-action ni overscroll-behavior aquí para no interferir con el touchpad */
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
-/* Bloquear scroll del body cuando popup está abierto (solo temporal) */
 body.popup-open {
   overflow: hidden;
 }
 
-/* ========== RESTO DEL CSS (todo igual, sin cambios) ========== */
 /* HEADER */
 .header {
   position: sticky;
@@ -412,7 +408,7 @@ body.popup-open {
   font-size: 1.2rem;
 }
 
-/* ========== NUEVA SECCIÓN CONTACTO ========== */
+/* CONTACTO */
 .contacto-section {
   background: var(--blanco-puro);
   padding: 4rem 2rem;
@@ -502,7 +498,7 @@ body.popup-open {
   transform: translateX(5px);
 }
 
-/* ========== NUEVO FOOTER MODERNO ========== */
+/* FOOTER MODERNO */
 .footer-modern {
   background: var(--azul-profundo);
   color: #e0e0e0;
@@ -603,7 +599,7 @@ body.popup-open {
   text-decoration: underline;
 }
 
-/* ================= POPUPS MEJORADOS ================= */
+/* POPUPS */
 .popup {
   position: fixed;
   top: 0;
@@ -621,7 +617,7 @@ body.popup-open {
 .popup__content {
   background: var(--blanco-puro);
   border-radius: 32px;
-  padding: 2rem 2rem 2rem 2rem;
+  padding: 2rem;
   max-width: 90%;
   width: 750px;
   max-height: 90vh;
@@ -631,7 +627,6 @@ body.popup-open {
   animation: fadeScale 0.2s ease;
 }
 
-/* Popups más pequeños para login/registro */
 #loginPopup .popup__content,
 #registroPopup .popup__content {
   width: 500px;
@@ -644,14 +639,8 @@ body.popup-open {
 }
 
 @keyframes fadeScale {
-  from {
-    opacity: 0;
-    transform: scale(0.96);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 .close-icon {
@@ -684,7 +673,6 @@ body.popup-open {
   font-size: 0.95rem;
 }
 
-/* Formularios dentro de popups */
 .popup__form {
   display: flex;
   flex-direction: column;
@@ -761,7 +749,7 @@ body.popup-open {
   filter: brightness(0.97);
 }
 
-/* CHATBOT FLOTANTE */
+/* CHATBOT */
 .chatbot {
   position: fixed;
   bottom: 2rem;
@@ -899,7 +887,6 @@ body.popup-open {
     width: 300px;
     right: -10px;
   }
-  /* Responsive para contacto y footer */
   .contacto-grid {
     flex-direction: column;
     align-items: stretch;

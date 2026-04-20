@@ -1,6 +1,4 @@
-// ============================================
 // DATOS DE HABITACIONES (25 habitaciones reales)
-// ============================================
 const habitaciones = [
   { id: 1, nombre: "Habitación 1", tipo: "Dos camas", categoria: "estandar", precio: 500, caracteristicas: ["2 camas, Matrimonial e Individual", "Baño privado"], disponible: true, televisor: false, aire: false },
   { id: 2, nombre: "Habitación 2", tipo: "Dos camas", categoria: "estandar", precio: 500, caracteristicas: ["2 camas, Matrimonial e Individual", "Baño privado"], disponible: true, televisor: false, aire: false },
@@ -29,9 +27,7 @@ const habitaciones = [
   { id: 25, nombre: "Habitación 25", tipo: "Cama Matrimonial", categoria: "aire", precio: 1100, caracteristicas: ["Cama Queen", "Baño privado", "Aire Acondicionado"], disponible: true, televisor: true, aire: true }
 ];
 
-// ============================================
 // SISTEMA DE USUARIOS Y RESERVAS (localStorage)
-// ============================================
 function initData() {
   if (!localStorage.getItem('usuarios')) localStorage.setItem('usuarios', JSON.stringify([]));
   if (!localStorage.getItem('reservas')) localStorage.setItem('reservas', JSON.stringify([]));
@@ -92,9 +88,7 @@ function crearReserva(reservaData) {
   return true;
 }
 
-// ============================================
 // RENDERIZAR HABITACIONES
-// ============================================
 let habitacionSeleccionada = null;
 let currentFilter = "all";
 
@@ -146,34 +140,24 @@ function setupFilters() {
   }));
 }
 
-// ============================================
 // FUNCIONES DE POPUPS CON BLOQUEO DE SCROLL
-// ============================================
 function blockBodyScroll(block) {
-  if (block) {
-    document.body.classList.add('popup-open');
-  } else {
-    document.body.classList.remove('popup-open');
-  }
+  if (block) { document.body.classList.add('popup-open'); }
+  else { document.body.classList.remove('popup-open'); }
 }
 
 function mostrarPopup(id) {
   const p = document.getElementById(id);
-  if (p) {
-    p.style.display = 'flex';
-    blockBodyScroll(true);
-  }
+  if (p) { p.style.display = 'flex'; blockBodyScroll(true); }
 }
 
 function cerrarPopup(id) {
   const p = document.getElementById(id);
   if (p) p.style.display = 'none';
-  // Verificar si queda algún popup abierto
   const anyOpen = Array.from(document.querySelectorAll('.popup')).some(pop => pop.style.display === 'flex');
   if (!anyOpen) blockBodyScroll(false);
 }
 
-// Cerrar popup haciendo clic fuera del contenido
 document.addEventListener('click', function(e) {
   if (e.target.classList && e.target.classList.contains('popup')) {
     e.target.style.display = 'none';
@@ -199,9 +183,7 @@ function mostrarAdmin() {
   mostrarPopup('adminPopup');
 }
 
-// ============================================
 // CHATBOT FAQ
-// ============================================
 function initChatbot() {
   const toggle = document.getElementById('chatbotToggle');
   const windowChat = document.getElementById('chatbotWindow');
@@ -226,9 +208,7 @@ function initChatbot() {
   }));
 }
 
-// ============================================
 // EVENTOS PRINCIPALES
-// ============================================
 document.addEventListener('DOMContentLoaded', () => {
   initData();
   renderRooms("all");
@@ -299,7 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-  // Botones de cierre (ya usan cerrarPopup)
+  // Botones de cierre
   const closeIds = ['closeRegistroPopupBtn','cancelRegistroBtn','closeLoginPopupBtn','cancelLoginBtn','closePopupBtn','cancelPopupBtn','closeDetallePopupBtn','cerrarDetalleBtn','closeMisReservasBtn','closeAdminBtn'];
   closeIds.forEach(id => {
     const btn = document.getElementById(id);
@@ -316,6 +296,5 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('misReservasLink')?.addEventListener('click', (e) => { e.preventDefault(); mostrarMisReservas(); });
   document.getElementById('logoutBtn')?.addEventListener('click', logoutUsuario);
   document.querySelector('.header__title')?.addEventListener('dblclick', mostrarAdmin);
-  // Popup automático a los 3 segundos si no hay sesión
   setTimeout(() => { if (!getUsuarioActual()) mostrarPopup('loginPopup'); }, 3000);
 });
